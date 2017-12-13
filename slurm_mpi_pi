@@ -11,14 +11,14 @@
 #SBATCH --nodes 2
 #
 # Number of MPI tasks
-#SBATCH -n 2
+#SBATCH -n 4
 #
 # Number of MPI tasks per node
-#SBATCH --tasks-per-node=1
+#SBATCH --tasks-per-node=2
 
 module load mpi
 mpic++ -Wall src/calculate_MPI_pi.cpp -o mpi_pi
-mpirun ./mpi_pi 100000 2
+mpirun ./mpi_pi 100000 4
 
 # End of submit file
 
