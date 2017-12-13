@@ -75,11 +75,11 @@ int main(int argc, char **argv) {
 	{
 		for (i = vs[rank]; i <= ve[rank]; i++)
 		{
-		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
-//		if ((i%2) == 0)
-//			partial_sum += double(1.0/(2*i + 1));
-//		else
-//			partial_sum -= double(1.0/(2*i + 1));
+//		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
+		if ((i%2) == 0)
+			partial_sum += double(1.0/(2*i + 1));
+		else
+			partial_sum -= double(1.0/(2*i + 1));
 		}
 		//cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
 	}
