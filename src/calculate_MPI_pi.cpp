@@ -45,8 +45,8 @@ int main(int argc, char **argv) {
 	for(i = 0; i <= (num_tasks-2); i++)
 	{
 		end = round((double(n) / double(num_tasks-1)) * double(i + 1));
-		vs[i] = start;
-		ve[i] = end;
+		vs[i+1] = start;
+		ve[i+1] = end;
 		start = end + 1;
 	}
 	// -------------------------------------------------------------------------------------
