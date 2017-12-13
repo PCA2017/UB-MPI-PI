@@ -75,11 +75,11 @@ int main (int argc, char* argv[]) {
 	//Each process will caculate a part of the sum
 	for (i = vs[rank]; i <= ve[rank]; i++)
 	{
-		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
-//		if ((n%2) == 0)
-//			partial_sum += double(1.0/(2*i + 1));
-//		else
-//			partial_sum -= double(1.0/(2*i + 1));
+//		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
+		if ((n%2) == 0)
+			partial_sum += double(1.0/(2*i + 1));
+		else
+			partial_sum -= double(1.0/(2*i + 1));
 	}
 
 	//Sum up all results
