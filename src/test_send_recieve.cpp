@@ -59,6 +59,8 @@ int main(int argc, char **argv) {
 
 		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 20, MPI_COMM_WORLD, &s);
 
+		cout << "Rank: " << rank << endl;
+
 	}
 
 	//Synchronize all processes
