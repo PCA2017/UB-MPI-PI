@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
 	// Calculate the Starts and Ends of the segments the different Tasks calculate
 	int start = 0;
 	int end;
-	for(i = 1; i < num_tasks; i++)
+	for(i = 1; i <= (num_tasks-1); i++)
 	{
 		end = round((double(n) / double(num_tasks)) * double(i + 1));
 		vs[i] = start;
