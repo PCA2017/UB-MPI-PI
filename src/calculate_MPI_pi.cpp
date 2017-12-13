@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
 	ve= new (nothrow) int[num_tasks];
 
 	// Calculate the Starts and Ends of the segments the different Tasks calculate
+	// Bisschen unübersichtlich mit den Indices da der Master nichts zum berechnen kriegt.
 	int start = 0;
 	int end;
 	for(i = 0; i <= (num_tasks-2); i++)
