@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 //int main (int argc, char* argv[]) {
 
 	// Args einlesen
-	char* pEnd;
+	//char* pEnd;
 
 	// Zeitmessung
 	struct timeval t_start, t_stop;   // Zeitmessung mit gettimeofday
@@ -34,7 +34,8 @@ int main(int argc, char **argv) {
 	int * vs;
 	int * ve;
 
-	n = strtod(argv[1], &pEnd);          // Anzahl der Elemente
+	//n = strtod(argv[1], &pEnd);          // Anzahl der Elemente
+	n = strtod(argv[1], NULL);          // Anzahl der Elemente
 	num_tasks = strtod(argv[2], NULL);  // Anzahl der Segmente
 
 //	n = 100000000;          // Anzahl der Elemente
