@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
 	int * ve;
 
 	//n = strtod(argv[1], &pEnd);          // Anzahl der Elemente
-	n = strtod(argv[1], NULL);          // Anzahl der Elemente
-	num_tasks = strtod(argv[2], NULL);  // Anzahl der Segmente
+	n = int(strtod(argv[1], NULL));          // Anzahl der Elemente
+	num_tasks = int(strtod(argv[2], NULL));  // Anzahl der Segmente
 
 //	n = 100000000;          // Anzahl der Elemente
 //	num_tasks = 32;  // Anzahl der Segmente
