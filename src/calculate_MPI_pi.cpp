@@ -9,11 +9,15 @@
 #include <sys/time.h>   // gettimeofday
 #include <math.h>       // round
 #include <cmath>        // pow
+#include <stdlib.h>     // strtod
 #include <mpi.h>
 using namespace std;
 
-//int main(int argc, char **argv) {
-int main (int argc, char* argv[]) {
+int main(int argc, char **argv) {
+//int main (int argc, char* argv[]) {
+
+	// Args einlesen
+	char* pEnd;
 
 	// Zeitmessung
 	struct timeval t_start, t_stop;   // Zeitmessung mit gettimeofday
@@ -30,8 +34,8 @@ int main (int argc, char* argv[]) {
 	int * vs;
 	int * ve;
 
-	n = atoi(argv[1]);          // Anzahl der Elemente
-	num_tasks = atoi(argv[2]);  // Anzahl der Segmente
+	n = strtod(argv[1], &pEnd);          // Anzahl der Elemente
+	num_tasks = strtod(argv[2], NULL);  // Anzahl der Segmente
 
 //	n = 100000000;          // Anzahl der Elemente
 //	num_tasks = 32;  // Anzahl der Segmente
