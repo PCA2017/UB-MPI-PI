@@ -33,7 +33,7 @@ int main (int argc, char* argv[]) {
 	//n = atoi(argv[1]);          // Anzahl der Elemente
 	//num_tasks = atoi(argv[2]);  // Anzahl der Segmente
 
-	n = 1000000;          // Anzahl der Elemente
+	n = 100000000;          // Anzahl der Elemente
 	num_tasks = 64;  // Anzahl der Segmente
 
 	// Vektor mit Startwerten
@@ -78,7 +78,7 @@ int main (int argc, char* argv[]) {
 		for (i = vs[rank]; i <= ve[rank]; i++)
 		{
 		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
-//		if ((n%2) == 0)
+//		if ((i%2) == 0)
 //			partial_sum += double(1.0/(2*i + 1));
 //		else
 //			partial_sum -= double(1.0/(2*i + 1));
@@ -104,7 +104,7 @@ int main (int argc, char* argv[]) {
 		useconds = t_stop.tv_usec - t_start.tv_usec;
 		duration = seconds + useconds/1000000.0;  // Dauer in Sekunden
 
-		cout << "Knotenanzahl: " << size << " Pi= " << pi << " Dauer: " <<  duration << " Sekunden" << endl;
+		cout << "Knotenanzahl: " << size << " Pi=" << pi << " Dauer: " <<  duration << " Sekunden" << endl;
 	}
 
 	error = MPI_Finalize();
