@@ -12,8 +12,8 @@
 #include <mpi.h>
 using namespace std;
 
-int main(int argc, char **argv) {
-//int main (int argc, char* argv[]) {
+//int main(int argc, char **argv) {
+int main (int argc, char* argv[]) {
 
 	// Zeitmessung
 	struct timeval t_start, t_stop;   // Zeitmessung mit gettimeofday
