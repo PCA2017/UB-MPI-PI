@@ -12,8 +12,8 @@
 #include <mpi.h>
 using namespace std;
 
-//int main(int argc, char **argv) {
-int main (int argc, char* argv[]) {
+int main(int argc, char **argv) {
+//int main (int argc, char* argv[]) {
 
 	// Zeitmessung
 	struct timeval t_start, t_stop;   // Zeitmessung mit gettimeofday
@@ -30,11 +30,11 @@ int main (int argc, char* argv[]) {
 	int * vs;
 	int * ve;
 
-	//n = atoi(argv[1]);          // Anzahl der Elemente
-	//num_tasks = atoi(argv[2]);  // Anzahl der Segmente
+	n = atoi(argv[1]);          // Anzahl der Elemente
+	num_tasks = atoi(argv[2]);  // Anzahl der Segmente
 
-	n = 100000000;          // Anzahl der Elemente
-	num_tasks = 32;  // Anzahl der Segmente
+//	n = 100000000;          // Anzahl der Elemente
+//	num_tasks = 32;  // Anzahl der Segmente
 
 	// Vektor mit Startwerten
 	vs= new (nothrow) int[num_tasks];
