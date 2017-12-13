@@ -14,13 +14,9 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-//int main (int argc, char* argv[]) {
-
-	// Args einlesen
-	//char* pEnd;
 
 	// Zeitmessung
-	struct timeval t_start, t_stop;   // Zeitmessung mit gettimeofday
+	struct timeval t_start, t_stop;
 	long seconds, useconds;
 	double duration;
 
@@ -34,12 +30,9 @@ int main(int argc, char **argv) {
 	int * vs;
 	int * ve;
 
-	//n = strtod(argv[1], &pEnd);          // Anzahl der Elemente
+	// Commandozeilenparameter
 	n = int(strtod(argv[1], NULL));          // Anzahl der Elemente
 	num_tasks = int(strtod(argv[2], NULL));  // Anzahl der Segmente
-
-//	n = 100000000;          // Anzahl der Elemente
-//	num_tasks = 32;  // Anzahl der Segmente
 
 	// Vektor mit Startwerten
 	vs= new (nothrow) int[num_tasks];
