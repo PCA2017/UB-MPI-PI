@@ -6,7 +6,6 @@
 
 #include <iostream>
 #include <new>
-#include <math.h>       // round
 #include <sys/time.h>   // gettimeofday
 #include <mpi.h>
 using namespace std;
@@ -45,7 +44,7 @@ int main (int argc, char* argv[]) {
 	int end;
 	for(i = 1; i < num_tasks; i++)
 	{
-		end = round ((double(n) / double(num_tasks)) * double(i + 1));
+		end = int((double(n) / double(num_tasks)) * double(i + 1));
 		vs[i] = start;
 		ve[i] = end;
 		start = end + 1;
