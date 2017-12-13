@@ -11,7 +11,7 @@
 #include <math.h>       // round
 #include <cmath>        // pow
 #include <stdlib.h>     // strtod
-//#include <mpi.h>
+#include <mpi.h>
 using namespace std;
 
 
