@@ -7,6 +7,7 @@
 #include <iostream>
 #include <new>
 #include <sys/time.h>   // gettimeofday
+#include <math.h>       // round
 #include <mpi.h>
 using namespace std;
 
@@ -44,7 +45,7 @@ int main (int argc, char* argv[]) {
 	int end;
 	for(i = 1; i < num_tasks; i++)
 	{
-		end = int((double(n) / double(num_tasks)) * double(i + 1));
+		end = round((double(n) / double(num_tasks)) * double(i + 1));
 		vs[i] = start;
 		ve[i] = end;
 		start = end + 1;
@@ -74,9 +75,9 @@ int main (int argc, char* argv[]) {
 	for (i = vs[rank]; i <= ve[rank]; i++)
 	{
 		if ((n%2) == 0)
-			partial_sum += (1/(2*i + 1));
+			partial_sum += double(1.0/(2*i + 1));
 		else
-			partial_sum -= (1/(2*i + 1));
+			partial_sum -= double(1.0/(2*i + 1));
 	}
 
 	//Sum up all results
@@ -88,7 +89,7 @@ int main (int argc, char* argv[]) {
 	//Caculate and print PI
 	if (rank == 0) //Master
 	{
-		pi=4 * sum; // sum = atan(1)
+		pi = 4 * sum; // sum = atan(1)
 
 		// Zeit stoppen
 		gettimeofday(&t_stop, NULL);
@@ -97,7 +98,7 @@ int main (int argc, char* argv[]) {
 		useconds = t_stop.tv_usec - t_start.tv_usec;
 		duration = seconds + useconds/1000000.0;  // Dauer in Sekunden
 
-		cout << "Knotenanzahl: " << size << " Pi= " << pi << " Dauer: " <<  duration << " Sekunden";
+		cout << "Knotenanzahl: " << size << " Pi= " << pi << " Dauer: " <<  duration << " Sekunden" << endl;
 	}
 
 	error = MPI_Finalize();
