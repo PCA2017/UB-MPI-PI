@@ -72,7 +72,9 @@ int main (int argc, char* argv[]) {
 		gettimeofday(&t_start, NULL);
 	}
 
-	//Each process will caculate a part of the sum
+	//Each Slave will caculate a part of the sum
+	if(rank != 0) // Slaves
+	{
 	for (i = vs[rank]; i <= ve[rank]; i++)
 	{
 		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
@@ -82,6 +84,7 @@ int main (int argc, char* argv[]) {
 //			partial_sum -= double(1.0/(2*i + 1));
 	}
 	cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
+	}
 
 	//Sum up all results
 	MPI_Reduce(&partial_sum, &sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
