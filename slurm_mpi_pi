@@ -1,0 +1,24 @@
+#!/bin/bash
+# Example with 64 MPI tasks and 8 tasks per node.
+#
+# Partition to use
+#SBATCH --partition=bench
+#
+# Number of nodes
+#SBATCH --nodes 8
+#
+# Number of MPI tasks
+#SBATCH -n 64
+#
+# Number of MPI tasks per node
+#SBATCH --tasks-per-node=8
+#
+# Runtime of this jobs is less then 1 hour.
+#SBATCH --time=1:00:00
+
+module load mpi
+mpic++ -Wall src/calculate_MPI_pi.cpp -o mpi_pi
+mpirun ./mpi_pi
+
+# End of submit file
+
