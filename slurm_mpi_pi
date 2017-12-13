@@ -8,10 +8,10 @@
 #SBATCH --nodes 8
 #
 # Number of MPI tasks
-#SBATCH -n 64
+#SBATCH -n 32
 #
 # Number of MPI tasks per node
-#SBATCH --tasks-per-node=8
+#SBATCH --tasks-per-node=4
 #
 # Runtime of this jobs is less then 1 hour.
 #SBATCH --time=1:00:00

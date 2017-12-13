@@ -34,7 +34,7 @@ int main (int argc, char* argv[]) {
 	//num_tasks = atoi(argv[2]);  // Anzahl der Segmente
 
 	n = 100000000;          // Anzahl der Elemente
-	num_tasks = 64;  // Anzahl der Segmente
+	num_tasks = 32;  // Anzahl der Segmente
 
 	// Vektor mit Startwerten
 	vs= new (nothrow) int[num_tasks];
