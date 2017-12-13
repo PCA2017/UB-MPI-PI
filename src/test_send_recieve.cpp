@@ -32,6 +32,8 @@ int main(int argc, char **argv) {
 	v1[2] = 20;
 	v1[3] = 30;
 
+	int a = 0, b=10, c=20, d=30;
+
 	// Get startet with MPI
 	error = MPI_Init(&argc, &argv);
 
@@ -46,9 +48,9 @@ int main(int argc, char **argv) {
 
 	if (rank == 0) //Master
 	{
-		MPI_Send(&v1[1], sizeof(int), MPI_INT, 1, 20, MPI_COMM_WORLD);
-		MPI_Send(&v1[2], sizeof(int), MPI_INT, 2, 20, MPI_COMM_WORLD);
-		MPI_Send(&v1[3], sizeof(int), MPI_INT, 3, 20, MPI_COMM_WORLD);
+		MPI_Send(&b, sizeof(int), MPI_INT, 1, 20, MPI_COMM_WORLD);
+		MPI_Send(&c, sizeof(int), MPI_INT, 2, 20, MPI_COMM_WORLD);
+		MPI_Send(&d, sizeof(int), MPI_INT, 3, 20, MPI_COMM_WORLD);
 	}
 
 	if (rank != 0) //Slave
