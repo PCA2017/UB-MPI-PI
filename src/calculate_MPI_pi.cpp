@@ -102,5 +102,8 @@ int main(int argc, char **argv) {
 
 	error = MPI_Finalize();
 
+	if (error != 0)
+		cout << "Error: " << error << endl;
+
 	return 0;
 }
