@@ -96,7 +96,7 @@ int main (int argc, char* argv[]) {
 		useconds = t_stop.tv_usec - t_start.tv_usec;
 		duration = seconds + useconds/1000000.0;  // Dauer in Sekunden
 
-		cout << "Knotenanzahl: " << size << " Pi= " << pi << " Dauer: " <<  duration << " Sekunden"
+		cout << "Knotenanzahl: " << size << " Pi= " << pi << " Dauer: " <<  duration << " Sekunden";
 	}
 
 	error = MPI_Finalize();
