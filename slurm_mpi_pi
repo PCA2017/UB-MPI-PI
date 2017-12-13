@@ -8,41 +8,17 @@
 #SBATCH --partition=bench
 #
 # Number of nodes
-#SBATCH --nodes 8
+#SBATCH --nodes 2
 #
 # Number of MPI tasks
-#SBATCH -n 32
-#
-# Number of MPI tasks per node
-#SBATCH --tasks-per-node=4
-
-module load mpi
-mpic++ -Wall src/calculate_MPI_pi.cpp -o mpi_pi
-mpirun ./mpi_pi 100000000 32
-mpirun ./mpi_pi 100000 32
-
-# Number of nodes
-#SBATCH --nodes 8
-#
-# Number of MPI tasks
-#SBATCH -n 64
-#
-# Number of MPI tasks per node
-#SBATCH --tasks-per-node=8
-
-mpirun ./mpi_pi 100000000 64
-mpirun ./mpi_pi 100000 64
-
-# Number of nodes
-#SBATCH --nodes 8
-#
-# Number of MPI tasks
-#SBATCH -n 8
+#SBATCH -n 2
 #
 # Number of MPI tasks per node
 #SBATCH --tasks-per-node=1
 
-mpirun ./mpi_pi 1000000 8
+module load mpi
+mpic++ -Wall src/calculate_MPI_pi.cpp -o mpi_pi
+mpirun ./mpi_pi 100000 2
 
 # End of submit file
 
