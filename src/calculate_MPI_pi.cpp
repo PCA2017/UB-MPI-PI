@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 		for (i = vs[rank]; i <= ve[rank]; i++)
 			partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
 
-		cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
+		//cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
 	}
 
 	//Sum up all results
