@@ -7,7 +7,6 @@
 #include <iostream>
 #include <new>
 #include <math.h>       // round
-#include <cmath>        // pow
 #include <sys/time.h>   // gettimeofday
 #include <mpi.h>
 using namespace std;
@@ -75,7 +74,10 @@ int main (int argc, char* argv[]) {
 	//Each process will caculate a part of the sum
 	for (i = vs[rank]; i <= ve[rank]; i++)
 	{
-		partial_sum += (1/(2*i + 1)) * pow ((-1),2.0);
+		if ((n%2) == 0)
+			partial_sum += (1/(2*i + 1));
+		else
+			partial_sum -= (1/(2*i + 1));
 	}
 
 	//Sum up all results
