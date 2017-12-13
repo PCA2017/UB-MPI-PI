@@ -75,15 +75,15 @@ int main (int argc, char* argv[]) {
 	//Each Slave will caculate a part of the sum
 	if(rank != 0) // Slaves
 	{
-	for (i = vs[rank]; i <= ve[rank]; i++)
-	{
+		for (i = vs[rank]; i <= ve[rank]; i++)
+		{
 		partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
 //		if ((n%2) == 0)
 //			partial_sum += double(1.0/(2*i + 1));
 //		else
 //			partial_sum -= double(1.0/(2*i + 1));
-	}
-	cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
+		}
+		//cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;
 	}
 
 	//Sum up all results
