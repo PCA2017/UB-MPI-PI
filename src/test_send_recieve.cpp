@@ -55,6 +55,8 @@ int main(int argc, char **argv) {
 
 	if (rank != 0) //Slave
 	{
+		cout << "Rank: " << rank << endl;
+
 		MPI_Status s;
 
 		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 20, MPI_COMM_WORLD, &s);
