@@ -33,6 +33,8 @@ int main(int argc, char **argv) {
 	// Everybody gets the params
 	int i, n, num_tasks;
 
+	cout << argc << endl;
+
 	n = int(strtod(argv[1], NULL));          // Anzahl der Elemente
 	num_tasks = int(strtod(argv[2], NULL));  // Anzahl der Segmente
 
