@@ -1,7 +1,11 @@
 //============================================================================
 // Name        : calculate_MPI_pi.cpp
 // Author      : pra01
-// Description : Calculate Pi MPI-Style.
+// Description : Calculate Pi in parallel using MPI.
+//               ./mpi_pi n num_tasks
+//               n : Number of elements in finite sum to calculate pi.
+//               num_tasks : Number of tasks calculating in parallel.
+//                           (This has to specified beforehand in slurm.)
 //============================================================================
 
 #include <iostream>
