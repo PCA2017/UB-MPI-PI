@@ -48,9 +48,9 @@ int main(int argc, char **argv) {
 
 	if (rank == 0) //Master
 	{
-		MPI_Send(&b, sizeof(int), MPI_INT, 1, 20, MPI_COMM_WORLD);
-		MPI_Send(&c, sizeof(int), MPI_INT, 2, 20, MPI_COMM_WORLD);
-		MPI_Send(&d, sizeof(int), MPI_INT, 3, 20, MPI_COMM_WORLD);
+		MPI_Send(&b, sizeof(int), MPI_INT, 1, 0, MPI_COMM_WORLD);
+		MPI_Send(&c, sizeof(int), MPI_INT, 2, 0, MPI_COMM_WORLD);
+		MPI_Send(&d, sizeof(int), MPI_INT, 3, 0, MPI_COMM_WORLD);
 	}
 
 	if (rank != 0) //Slave
@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 
 		//MPI_Status s;
 
-		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 20, MPI_COMM_WORLD, NULL);
+		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);  // Ändert wert in "rank" !!!!
 
 		cout << "Rank: " << rank << endl;
 
