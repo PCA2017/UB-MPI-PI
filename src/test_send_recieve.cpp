@@ -55,13 +55,13 @@ int main(int argc, char **argv) {
 
 	if (rank != 0) //Slave
 	{
-		cout << "Rank: " << rank << endl;
+		//cout << "Rank: " << rank << endl;
 
 		//MPI_Status s;
 
-		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);  // Ändert wert in "rank" !!!!
+		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);
 
-		cout << "Rank: " << rank << endl;
+		//cout << "Rank: " << rank << endl;
 
 	}
 
