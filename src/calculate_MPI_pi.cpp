@@ -23,34 +23,14 @@ int main(int argc, char **argv) {
 	// MPI Variables
 	int rank, size, error;
 	double pi = 0.0, sum = 0.0, partial_sum = 0.0;
+	int seg_start, seg_end; // Start und Ende eines Segments den ein Slave berechnet
 
 
-	// Everybody calculates the beginning and end of every segment. -----------------------
+	// Everybody gets the params
 	int i, n, num_tasks;
-	int * vs;
-	int * ve;
 
-	// Commandozeilenparameter
 	n = int(strtod(argv[1], NULL));          // Anzahl der Elemente
 	num_tasks = int(strtod(argv[2], NULL));  // Anzahl der Segmente
-
-	// Vektor mit Startwerten
-	vs= new (nothrow) int[num_tasks];
-	// Ergebnisvektor mit Endwerten
-	ve= new (nothrow) int[num_tasks];
-
-	// Calculate the Starts and Ends of the segments the different Tasks calculate
-	// Bisschen unübersichtlich mit den Indices da der Master nichts zum berechnen kriegt.
-	int start = 0;
-	int end;
-	for(i = 0; i <= (num_tasks-2); i++)
-	{
-		end = round((double(n) / double(num_tasks-1)) * double(i + 1));
-		vs[i+1] = start;
-		ve[i+1] = end;
-		start = end + 1;
-	}
-	// -------------------------------------------------------------------------------------
 
 
 	// Get startet with MPI
@@ -62,10 +42,52 @@ int main(int argc, char **argv) {
 	//Get processes Number
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-	//Synchronize all processes and get the begin time
+	//Synchronize all processes
 	MPI_Barrier(MPI_COMM_WORLD);
 
 	if (rank == 0) //Master
+	{
+		// Der Master berechnet die Zu berechnenden Wertebereich für jeden Slave
+
+		// Vektor mit Startwerten
+		int * vs;
+		// Ergebnisvektor mit Endwerten
+		int * ve;
+
+		vs= new (nothrow) int[num_tasks];
+		ve= new (nothrow) int[num_tasks];
+
+		// Calculate the Starts and Ends of the segments the different Tasks calculate
+		// Bisschen unübersichtlich mit den Indices da der Master nichts zum berechnen kriegt.
+		int start = 0;
+		int end;
+		for(i = 0; i <= (num_tasks-2); i++)
+		{
+			end = round((double(n) / double(num_tasks-1)) * double(i + 1));
+			vs[i+1] = start;
+			ve[i+1] = end;
+			start = end + 1;
+		}
+
+		// Werte an Slaves senden
+		for(i = 1; i <= (num_tasks-1); i++)
+		{
+			MPI_Send(&vs[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD);
+			MPI_Send(&ve[i], 1, MPI_INT, i, 1, MPI_COMM_WORLD);
+		}
+	}
+
+	// Slaves empfangen die gesendeten Werte
+	if(rank != 0)
+	{
+		MPI_Recv(&seg_start, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);
+		MPI_Recv(&seg_end, 1, MPI_INT, 0, 1, MPI_COMM_WORLD, NULL);
+	}
+
+	//Synchronize all processes
+	MPI_Barrier(MPI_COMM_WORLD);
+
+	if(rank == 0)
 	{
 		// Zeit stoppen
 		gettimeofday(&t_start, NULL);
@@ -74,7 +96,7 @@ int main(int argc, char **argv) {
 	//Each Slave will caculate a part of the sum
 	if(rank != 0) // Slaves
 	{
-		for (i = vs[rank]; i <= ve[rank]; i++)
+		for (i = seg_start; i <= seg_end; i++)
 			partial_sum += (1.0/(2*i + 1)) * pow ((-1), i);
 
 		cout << "Rank: " << rank << " Partial Sum " << partial_sum << " Startindex: " <<  vs[rank] << " Endindex: " << ve[rank] << endl;

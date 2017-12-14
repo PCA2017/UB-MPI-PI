@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 
 		//MPI_Status s;
 
-		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);
+		MPI_Recv(&meine_Zahl, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, NULL);
 
 		//cout << "Rank: " << rank << endl;
 
