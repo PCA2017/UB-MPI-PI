@@ -57,9 +57,9 @@ int main(int argc, char **argv) {
 	{
 		cout << "Rank: " << rank << endl;
 
-		MPI_Status s;
+		//MPI_Status s;
 
-		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 20, MPI_COMM_WORLD, &s);
+		MPI_Recv(&meine_Zahl, sizeof(int), MPI_INT, 0, 20, MPI_COMM_WORLD, NULL);
 
 		cout << "Rank: " << rank << endl;
 
