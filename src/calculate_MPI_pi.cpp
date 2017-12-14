@@ -30,14 +30,36 @@ int main(int argc, char **argv) {
 	int seg_start, seg_end; // Start und Ende eines Segments den ein Slave berechnet
 
 
-	// Everybody gets the params
+	// Every task gets the comandline inputs
 	int i, n, num_tasks;
 
-	cout << argc << endl;
+	if(argc == 1 || argc == 2)
+	{
+		cout << "Please supply two input arguments." << endl;
+		cout << "Info: " << endl;
+		cout << "Calculate Pi in parallel using MPI." << endl;
+		cout << "./mpi_pi n num_tasks" << endl;
+		cout << "n : Number of elements in finite sum to calculate pi." << endl;
+		cout << "num_tasks : Number of tasks calculating in parallel." << endl;
+		exit(0);
+	}
 
+	// Read comandline inputs
 	n = int(strtod(argv[1], NULL));          // Anzahl der Elemente
 	num_tasks = int(strtod(argv[2], NULL));  // Anzahl der Segmente
 
+	// Ceck n and num_tasks are in the right range
+	if(num_tasks <= 1)
+	{
+		cout << "Please supply a num_tasks bigger than or equal 2 (one master and one slave)." << endl;
+		exit(0);
+	}
+
+	if((n <= 0) || (n < num_tasks))
+	{
+		cout << "Please supply n grater or equal to 1 and bigger than num_tasks" << endl;
+		exit(0);
+	}
 
 	// Get startet with MPI
 	error = MPI_Init(&argc, &argv);
